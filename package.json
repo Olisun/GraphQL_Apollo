@@ -1,0 +1,29 @@
+{
+  "name": "graphql_apollo",
+  "version": "1.0.0",
+  "description": "GraphQL Apollo SpaceX App",
+  "main": "server.js",
+  "scripts": {
+    "start": "start",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Olisun/GraphQL_Apollo.git"
+  },
+  "author": "Me",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Olisun/GraphQL_Apollo/issues"
+  },
+  "homepage": "https://github.com/Olisun/GraphQL_Apollo#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^15.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
