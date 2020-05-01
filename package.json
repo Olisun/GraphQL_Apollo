@@ -4,7 +4,7 @@
   "description": "GraphQL Apollo SpaceX App",
   "main": "server.js",
   "scripts": {
-    "start": "start",
+    "start": "npm run server",
     "server": "nodemon server.js"
   },
   "repository": {
