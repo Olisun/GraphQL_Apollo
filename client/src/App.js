@@ -1,10 +1,20 @@
 import React from 'react';
 import './App.css';
 
+import SpaceXLogo from './SpaceXLogo.png';
+
 function App() {
   return (
     <div className="App">
-      <h1>SpaceX</h1>
+      <img
+        src={SpaceXLogo}
+        alt="SpaceX"
+        style={{
+          width: 300,
+          display: 'block',
+          margin: 'auto'
+        }}
+      />
     </div>
   );
 }
