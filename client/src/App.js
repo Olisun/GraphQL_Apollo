@@ -17,7 +17,7 @@ class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <div className="container">
+        <div className="App">
           <img
             src={SpaceXLogo}
             alt="SpaceX"
@@ -28,6 +28,7 @@ class App extends Component {
             }}
           />
         </div>
+        <Launches />
       </ApolloProvider>
     );
   }
