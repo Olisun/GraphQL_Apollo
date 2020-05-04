@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
 // ApolloProvider works like Redux. Wrap the app component in the provider and pass in the store (state).
 import { ApolloProvider } from 'react-apollo';
+import Container from 'react-bootstrap/Container';
 
 // From App
 import './App.css';
