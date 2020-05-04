@@ -21,7 +21,8 @@ const LaunchType = new GraphQLObjectType({
     launch_date_local: { type: GraphQLString },
     launch_success: { type: GraphQLBoolean },
     flight_number: { type: GraphQLInt },
-    rocket: { type: RocketType }
+    rocket: { type: RocketType },
+    // links: { type: FlickerImageLinkType }
   })
 });
 
@@ -34,6 +35,13 @@ const RocketType = new GraphQLObjectType({
     rocket_type: { type: GraphQLString }
   })
 });
+
+// const FlickerImageLinkType = new GraphQLObjectType({
+//   name: 'FlickerImage',
+//   fields: () => ({
+//     flickr_images: { type: GraphQLList }
+//   })
+// });
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
