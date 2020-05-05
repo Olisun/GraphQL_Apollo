@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Card, Container, Col, Row } from "react-bootstrap";
 import classNames from 'classnames';
+import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 
 
 export default function LaunchItem({
@@ -27,17 +29,28 @@ export default function LaunchItem({
                     {mission_name}
                   </span>
                 </Card.Subtitle>
-                <Card.Subtitle className="mb-2 text-muted">Launch Date: {launch_date_local}</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted">
+                  Launch Date:
+                  <Moment format="MM-DD-YYYY HH:mm">
+                    {launch_date_local}
+                  </Moment>
+                </Card.Subtitle>
               </Col>
               <Col sm={3}>
-                <div className="col-md-4">
-                  <Button variant="info" style={{ width: "130px", borderRadius: "20px" }}>Launch Details</Button>
-                </div>
+
+                <Link
+                  to={`/launch/${flight_number}`}
+                  variant="info"
+                  className="btn btn-primary"
+                  style={{ width: "130px", borderRadius: "20px" }}>
+                  Launch Details
+                  </Link>
+
               </Col>
             </Row>
           </Container>
         </Card.Body>
       </Card>
-    </div>
+    </div >
   )
 }

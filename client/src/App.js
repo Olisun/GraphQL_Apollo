@@ -4,11 +4,13 @@ import ApolloClient from 'apollo-boost';
 // ApolloProvider works like Redux. Wrap the app component in the provider and pass in the store (state).
 import { ApolloProvider } from 'react-apollo';
 import Container from 'react-bootstrap/Container';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // From App
 import './App.css';
 import SpaceXLogo from './SpaceXLogo.png';
 import Launches from './components/Launches';
+import Launch from './components/Launch';
 
 
 const client = new ApolloClient({
@@ -18,18 +20,21 @@ class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <div className="App">
-          <img
-            src={SpaceXLogo}
-            alt="SpaceX"
-            style={{
-              width: 300,
-              display: 'block',
-              margin: 'auto'
-            }}
-          />
-        </div>
-        <Launches />
+        <Router>
+          <div className="App">
+            <img
+              src={SpaceXLogo}
+              alt="SpaceX"
+              style={{
+                width: 400,
+                display: 'block',
+                margin: 'auto'
+              }}
+            />
+          </div>
+          <Route exact path="/" component={Launches} />
+          <Route exact path="/launch/:flight_number" component={Launch} />
+        </Router>
       </ApolloProvider>
     );
   }
