@@ -37,20 +37,18 @@ export default function LaunchItem({
                 </Card.Subtitle>
               </Col>
               <Col sm={3}>
-
                 <Link
                   to={`/launch/${flight_number}`}
                   variant="info"
                   className="btn btn-primary"
                   style={{ width: "130px", borderRadius: "20px" }}>
                   Launch Details
-                  </Link>
-
+                </Link>
               </Col>
             </Row>
           </Container>
         </Card.Body>
       </Card>
-    </div >
+    </div>
   )
 }
