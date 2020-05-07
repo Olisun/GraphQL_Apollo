@@ -8,7 +8,7 @@ const {
   GraphQLSchema,
   GraphQLList,
   GraphQLNonNull,
-  GraphQLBoolean
+  GraphQLBoolean,
 } = require('graphql');
 
 // Launch Type
@@ -22,7 +22,8 @@ const LaunchType = new GraphQLObjectType({
     launch_success: { type: GraphQLBoolean },
     flight_number: { type: GraphQLInt },
     rocket: { type: RocketType },
-    // links: { type: FlickerImageLinkType }
+    links: { type: LinkType },
+    details: { type: GraphQLString }
   })
 });
 
@@ -36,12 +37,14 @@ const RocketType = new GraphQLObjectType({
   })
 });
 
-// const FlickerImageLinkType = new GraphQLObjectType({
-//   name: 'FlickerImage',
-//   fields: () => ({
-//     flickr_images: { type: GraphQLList }
-//   })
-// });
+// Links Type
+const LinkType = new GraphQLObjectType({
+  name: 'Link',
+  fields: () => ({
+    mission_patch: { type: GraphQLString },
+    article_link: { type: GraphQLString }
+  })
+});
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -85,6 +88,14 @@ const RootQuery = new GraphQLObjectType({
       // resolve function fetching the data
       resolve(parent, args) {
         return axios.get(`https://api.spacexdata.com/v3/rockets/${args.rocket_id}`)
+          .then(res => res.data)
+      }
+    },
+    // All rockets
+    links: {
+      type: new GraphQLList(LinkType),
+      resolve(parent, args) {
+        return axios.get('https://api.spacexdata.com/v3/links')
           .then(res => res.data)
       }
     }

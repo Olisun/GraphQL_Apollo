@@ -4,6 +4,7 @@ import { Query } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { Button, Card, Container, Col, Row } from "react-bootstrap";
+import Moment from 'react-moment';
 
 
 const LAUNCH_QUERY = gql`
@@ -14,6 +15,7 @@ const LAUNCH_QUERY = gql`
       launch_year
       launch_success
       launch_date_local
+      details
       rocket {
         rocket_id
         rocket_name
@@ -45,13 +47,20 @@ export class Launch extends Component {
                 launch_year,
                 launch_success,
                 launch_data_local,
+                details,
                 rocket: { rocket_id, rocket_name, rocket_type }
               } = data.launch
               return <div>
                 <h4>{mission_name}</h4>
+                <h4>{details}</h4>
                 <h4>{launch_year}</h4>
-                <h4>{launch_success}</h4>
-                <h4>{launch_data_local}</h4>
+                {/* To display a boolean.  If true 'successful' else unsuccessful */}
+                <h4>{launch_success ? 'Successful' : 'Unsuccessful'}</h4>
+                <h4>
+                  <Moment format="MM-DD-YYYY at HH:mm">
+                    {launch_data_local}
+                  </Moment>
+                </h4>
                 <h4>{rocket_id}</h4>
                 <h4>{rocket_name}</h4>
                 <h4>{rocket_type}</h4>
