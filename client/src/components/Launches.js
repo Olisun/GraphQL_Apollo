@@ -13,8 +13,6 @@ const LAUNCHES_QUERY = gql`
       mission_name
       launch_date_local
       launch_success
-      # links
-      details
     }
   }
 `;

@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-import { Button, Card, Container, Col, Row } from "react-bootstrap";
+import { Button, Card, Container, Col, fluid, Image, Row, Table } from "react-bootstrap";
 import Moment from 'react-moment';
 
 
@@ -20,6 +20,10 @@ const LAUNCH_QUERY = gql`
         rocket_id
         rocket_name
         rocket_type
+      }
+      links {
+        mission_patch
+        article_link
       }
     }
   }
@@ -48,22 +52,59 @@ export class Launch extends Component {
                 launch_success,
                 launch_data_local,
                 details,
-                rocket: { rocket_id, rocket_name, rocket_type }
+                rocket: { rocket_id, rocket_name, rocket_type },
+                links: { mission_patch, article_link }
               } = data.launch
               return <div>
-                <h4>{mission_name}</h4>
-                <h4>{details}</h4>
-                <h4>{launch_year}</h4>
-                {/* To display a boolean.  If true 'successful' else unsuccessful */}
-                <h4>{launch_success ? 'Successful' : 'Unsuccessful'}</h4>
-                <h4>
-                  <Moment format="MM-DD-YYYY at HH:mm">
-                    {launch_data_local}
-                  </Moment>
-                </h4>
-                <h4>{rocket_id}</h4>
-                <h4>{rocket_name}</h4>
-                <h4>{rocket_type}</h4>
+                <Card style={{ width: '36rem', margin: "auto" }}>
+                  <Card.Img
+                    variant="top"
+                    src={mission_patch}
+                    style={{ width: '300px', margin: 'auto' }}
+                  />
+                  <Card.Body>
+                    <Card.Title>{mission_name}</Card.Title>
+                    <Card.Text>
+                      <Table responsive bordered striped>
+                        <tbody>
+                          <tr>
+                            <td>Launch Year</td>
+                            <td>-{launch_year}</td>
+                          </tr>
+                          <tr>
+                            <td>Launch Success</td>
+                            <td>{launch_success}</td>
+                          </tr>
+                          <tr>
+                            <td>Time of Launch</td>
+                            <td>
+                              <Moment format="MM-DD-YYYY at HH:mm">
+                                {launch_data_local}
+                              </Moment>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Rocket Name</td>
+                            <td>{rocket_name}</td>
+                          </tr>
+                          <tr>
+                            <td>Rocket Type</td>
+                            <td>{rocket_type}</td>
+                          </tr>
+                          <tr>
+                            <td>Rocket ID</td>
+                            <td>{rocket_id}</td>
+                          </tr>
+                          <tr>
+                            <td>Outcome</td>
+                            <td>{details}</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </Card.Text>
+
+                  </Card.Body>
+                </Card>
               </div>
             }
           }
