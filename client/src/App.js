@@ -6,6 +6,7 @@ import { ApolloProvider } from 'react-apollo';
 import Container from 'react-bootstrap/Container';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+
 // From App
 import './App.css';
 import SpaceXLogo from './SpaceXLogo.png';
@@ -14,7 +15,7 @@ import Launch from './components/Launch';
 
 
 const client = new ApolloClient({
-  uri: 'http://localhost:5000/graphql'
+  uri: '/graphql'
 })
 class App extends Component {
   render() {
